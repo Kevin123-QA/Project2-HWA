@@ -21,14 +21,8 @@ axios
 
         console.log(response);
         for (let spending_tracker of response.data) {
-
-
-
-
+            //console.log(spending_tracker.id)
             ViewAll(spending_tracker)
-
-            //document.body.innerHTML = ViewAll(spending_tracker);
-            //document.getElementById('view').innerText = ViewAll(spending_tracker)
         }
 
     })
@@ -50,31 +44,37 @@ function ViewAll(spending_tracker) {
         for (let key in spending_tracker) {
 
             let tabledata = document.createElement("td");
-
             let text = document.createTextNode(spending_tracker[key]);
-
-
             tabledata.appendChild(text);
-
             row.appendChild(tabledata);
         }
+
+        //console.log(spending_tracker.id)
+
         let tableEdit = document.createElement("td");
         row.appendChild(tableEdit);
+
+        let edit = document.createElement("button");
+        edit.id = "editModal"
+        edit.innerHTML = "Edit";
+        edit.className = "btn btn-warning"
+        edit.toggle = "modal";
+        edit.onclick = "update()";
+        edit.target="#exampleModal"
+        tableEdit.appendChild(edit);
+
+
         let tableDel = document.createElement("td");
         row.appendChild(tableDel);
 
-        let edit = document.createElement("button");
-        edit.innerHTML = "Edit";
-        edit.className = "btn btn-warning"
-        tableEdit.appendChild(edit);
+        let remove = document.createElement("button");
+        remove.innerHTML = "Delete";
+        remove.className = "btn btn-danger";
+        remove.onclick = ()=>{
+                Delete(spending_tracker.id)
+        };
         
-        let remove = document.createElement("button")
-        remove.innerHTML="Delete"
-        remove.className = "btn btn-danger"
         tableDel.appendChild(remove);
-        
-        
-       
 
     }
     addRows(table, spending_tracker);
@@ -104,6 +104,22 @@ const add = () => {
         .catch((err) => console.log(err));
 }
 
+const Delete = (spending_tracker) => {
+
+    // let id = spending_tracker
+    // console.log(this.id)
+    axios
+        .delete(`${url}/delete/` + spending_tracker)
+
+        .then((resp) => {
+            // this.spending_tracker.id
+            // console.log(this.spending_tracker.id)
+            console.log(resp);
+            window.location.reload();
+        })
+    .catch((err) => console.log.err);
+
+}
 const reset = () => {
     info.value = "";
     amount.value = "";
@@ -111,7 +127,10 @@ const reset = () => {
     dropDown.selectedIndex = "";
 }
 
+const update = () => {
 
+
+}
 
 
 
