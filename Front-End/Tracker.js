@@ -3,6 +3,11 @@
 const amount = document.querySelector("#amount");
 const type = document.querySelector("#typeSelector");
 const info = document.querySelector("#additional");
+const modal = document.querySelector("#exampleModal");
+const EditAmount = document.querySelector("#EditAmount");
+const EditType = document.querySelector("#EditTypeSelector");
+const EditInfo = document.querySelector("#EditAdditional");
+const EditSave = document.querySelector("#EditSave")
 
 
 
@@ -18,11 +23,9 @@ axios
         }
     })
     .then((response) => {
-
         console.log(response);
         for (let spending_tracker of response.data) {
-            //console.log(spending_tracker.id)
-            ViewAll(spending_tracker)
+                       ViewAll(spending_tracker)
         }
 
     })
@@ -31,8 +34,7 @@ axios
     });
 
 function ViewAll(spending_tracker) {
-    //console.log(typeof spending_tracker)
-    //console.log(spending_tracker.id)
+
 
     let table = document.querySelector("table");
 
@@ -48,21 +50,21 @@ function ViewAll(spending_tracker) {
             tabledata.appendChild(text);
             row.appendChild(tabledata);
         }
-
-        //console.log(spending_tracker.id)
-
         let tableEdit = document.createElement("td");
         row.appendChild(tableEdit);
 
         let edit = document.createElement("button");
-        edit.id = "editModal"
+
         edit.innerHTML = "Edit";
-        edit.className = "btn btn-warning"
-        edit.toggle = "modal";
-        edit.onclick = "update()";
-        edit.target="#exampleModal"
+        edit.className = "btn btn-warning";
+        edit.setAttribute("data-toggle", "modal")
+        edit.setAttribute("data-target", "#EditModal")
         tableEdit.appendChild(edit);
 
+        edit.onclick = () => {
+            getData(spending_tracker)
+            EditSave.addEventListener("click", () => { update(spending_tracker.id) })
+        };
 
         let tableDel = document.createElement("td");
         row.appendChild(tableDel);
@@ -70,10 +72,10 @@ function ViewAll(spending_tracker) {
         let remove = document.createElement("button");
         remove.innerHTML = "Delete";
         remove.className = "btn btn-danger";
-        remove.onclick = ()=>{
-                Delete(spending_tracker.id)
+        remove.onclick = () => {
+            Delete(spending_tracker.id)
         };
-        
+
         tableDel.appendChild(remove);
 
     }
@@ -98,46 +100,84 @@ const add = () => {
         .post(`${url}/create`, newObj)
         .then((resp) => {
             console.log(resp);
-            alert("Entry Has been Added");
             window.location.reload();
         })
         .catch((err) => console.log(err));
 }
 
 const Delete = (spending_tracker) => {
-
-    // let id = spending_tracker
-    // console.log(this.id)
     axios
         .delete(`${url}/delete/` + spending_tracker)
 
         .then((resp) => {
-            // this.spending_tracker.id
-            // console.log(this.spending_tracker.id)
+            
             console.log(resp);
             window.location.reload();
         })
-    .catch((err) => console.log.err);
+        .catch((err) => console.log.err);
 
 }
+
 const reset = () => {
     info.value = "";
     amount.value = "";
-    var dropDown = document.getElementById("typeSelector");
+    let dropDown = document.getElementById("typeSelector");
     dropDown.selectedIndex = "";
 }
 
-const update = () => {
 
+const update = (spending_tracker) => {
+    const EDITTYPE = EditType.value
+    const EDITINFO = EditInfo.value
+    const EDITAMOUNT = EditAmount.value
+
+    console.log(`${EDITTYPE} ${EDITAMOUNT} ${EDITINFO}`)
+
+    let editObj = {
+        type: EDITTYPE,
+        info: EDITINFO,
+        amount: EDITAMOUNT
+    };
+
+    axios
+        .put(`${url}/update/` + spending_tracker, editObj)
+        .then((resp) => {
+            console.log(resp)
+            window.location.reload();
+        })
+        .catch((err) => console.log.err);
 
 }
 
 
+const getData = (spending_tracker) => {
 
+    EditAmount.value = spending_tracker.amount;
+    EditInfo.value = spending_tracker.info;
+    let EditDropDown = document.getElementById("EditTypeSelector")
+    if (spending_tracker.type == "Payments") {
+        EditDropDown.selectedIndex = 1;
+    }
+    else if (spending_tracker.type == "Eating Out") {
+        EditDropDown.selectedIndex = 2;
+    }
+    else if (spending_tracker.type == "Groceries") {
+        EditDropDown.selectedIndex = 3;
+    }
+    else if (spending_tracker.type == "Entertainment") {
+        EditDropDown.selectedIndex = 4;
+    }
+    else if (spending_tracker.type == "Shopping") {
+        EditDropDown.selectedIndex = 5;
+    }
+    else if (spending_tracker.type == "Bills") {
+        EditDropDown.selectedIndex = 6;
+    }
+    else if (spending_tracker.type == "Other") {
+        EditDropDown.selectedIndex = 7;
+    }
 
-
-
-
+}
 
 
 
