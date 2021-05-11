@@ -34,7 +34,8 @@ axios
     });
 
 function ViewAll(spending_tracker) {
-
+    // const decimal = spending_tracker.amount.toFixed(2);
+    // console.log(decimal)
 
     let table = document.querySelector("table");
 
@@ -86,7 +87,7 @@ function ViewAll(spending_tracker) {
 
 const add = () => {
     const TYPE = type.value;
-    const AMOUNT = amount.value;
+    const AMOUNT= amount.value;
     const INFO = info.value;
     console.log(`${TYPE} ${AMOUNT} ${INFO}`)
 
