@@ -8,7 +8,7 @@ const EditAmount = document.querySelector("#EditAmount");
 const EditType = document.querySelector("#EditTypeSelector");
 const EditInfo = document.querySelector("#EditAdditional");
 const EditSave = document.querySelector("#EditSave");
-const Message = document.querySelector("#div1");
+let Message = document.querySelector("#div1");
 
 
 
@@ -81,10 +81,7 @@ function ViewAll(spending_tracker) {
         };
 
         tableDel.appendChild(remove);
-        
-
-
-    }
+         }
     addRows(table, spending_tracker);
 }
 
@@ -99,6 +96,7 @@ const add = () => {
     let addMessage = document.createTextNode("Entry Has Been Added");
     Heading.appendChild(addMessage);
     Message.appendChild(Heading);
+    
     let newObj = {
         type: TYPE,
         info: INFO,
@@ -109,9 +107,8 @@ const add = () => {
         .post(`${url}/create`, newObj)
         .then((resp) => {
             console.log(resp);
-           
-            addRows(table, spending_tracker);
-            // window.location.reload();
+            window.alert("Entry Added")
+            window.location.reload();
         })
         .catch((err) => {
              console.log(err)
@@ -122,6 +119,13 @@ const add = () => {
 }
 
 const Delete = (spending_tracker) => {
+    let Heading = document.createElement('h5');
+    let deleteMessage = document.createTextNode("Entry Has Been Deleted");
+    Heading.appendChild(deleteMessage);
+    Message.appendChild(Heading);
+    
+    console.log(spending_tracker)
+    
     axios
         .delete(`${url}/delete/` + spending_tracker)
 
@@ -147,6 +151,10 @@ const update = (spending_tracker) => {
     const EDITTYPE = EditType.value
     const EDITINFO = EditInfo.value
     const EDITAMOUNT = EditAmount.value
+    let Heading = document.createElement('h5');
+    let deleteMessage = document.createTextNode("Entry Has Been Updated");
+    Heading.appendChild(deleteMessage);
+    Message.appendChild(Heading);
 
     console.log(`${EDITTYPE} ${EDITAMOUNT} ${EDITINFO}`)
 
