@@ -7,7 +7,8 @@ const modal = document.querySelector("#exampleModal");
 const EditAmount = document.querySelector("#EditAmount");
 const EditType = document.querySelector("#EditTypeSelector");
 const EditInfo = document.querySelector("#EditAdditional");
-const EditSave = document.querySelector("#EditSave")
+const EditSave = document.querySelector("#EditSave");
+const Message = document.querySelector("#div1");
 
 
 
@@ -80,6 +81,8 @@ function ViewAll(spending_tracker) {
         };
 
         tableDel.appendChild(remove);
+        
+
 
     }
     addRows(table, spending_tracker);
@@ -92,7 +95,10 @@ const add = () => {
     const AMOUNT= amount.value;
     const INFO = info.value;
     console.log(`${TYPE} ${AMOUNT} ${INFO}`)
-
+    let Heading = document.createElement('h5');
+    let addMessage = document.createTextNode("Entry Has Been Added");
+    Heading.appendChild(addMessage);
+    Message.appendChild(Heading);
     let newObj = {
         type: TYPE,
         info: INFO,
@@ -103,13 +109,15 @@ const add = () => {
         .post(`${url}/create`, newObj)
         .then((resp) => {
             console.log(resp);
-            window.location.reload();
+           
+            addRows(table, spending_tracker);
+            // window.location.reload();
         })
         .catch((err) => {
              console.log(err)
         });
-
-    
+            
+ 
         
 }
 
@@ -120,6 +128,7 @@ const Delete = (spending_tracker) => {
         .then((resp) => {
             
             console.log(resp);
+            window.alert("Entry Deleted")
             window.location.reload();
         })
         .catch((err) => console.log.err);
@@ -151,6 +160,7 @@ const update = (spending_tracker) => {
         .put(`${url}/update/` + spending_tracker, editObj)
         .then((resp) => {
             console.log(resp)
+            window.alert("Entry Changed")
             window.location.reload();
         })
         .catch((err) => console.log.err);
