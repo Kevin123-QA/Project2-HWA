@@ -58,8 +58,9 @@ function ViewAll(spending_tracker) {
 
         edit.innerHTML = "Edit";
         edit.className = "btn btn-warning";
-        edit.setAttribute("data-toggle", "modal")
-        edit.setAttribute("data-target", "#EditModal")
+        edit.setAttribute("data-toggle", "modal");
+        edit.setAttribute("data-target", "#EditModal");
+        edit.setAttribute("id","editBTN");
         tableEdit.appendChild(edit);
 
         edit.onclick = () => {
@@ -103,7 +104,12 @@ const add = () => {
             console.log(resp);
             window.location.reload();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+             console.log(err)
+        });
+
+    
+        
 }
 
 const Delete = (spending_tracker) => {
