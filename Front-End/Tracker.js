@@ -73,6 +73,7 @@ function ViewAll(spending_tracker) {
 
         let remove = document.createElement("button");
         remove.innerHTML = "Delete";
+        remove.setAttribute("id","removeBTN");
         remove.className = "btn btn-danger";
         remove.onclick = () => {
             Delete(spending_tracker.id)
