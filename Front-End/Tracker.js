@@ -16,7 +16,6 @@ let Message = document.querySelector("#div1");
 const subButton = document.querySelector("#submit");
 const url = "http://localhost:8080"
 
-
 axios
     .get(`${url}/getAll`, {
         "headers": {
@@ -87,7 +86,7 @@ function ViewAll(spending_tracker) {
 
 
 
-const add = () => {
+ const add = () => {
     const TYPE = type.value;
     const AMOUNT= amount.value;
     const INFO = info.value;
@@ -107,9 +106,12 @@ const add = () => {
         .post(`${url}/create`, newObj)
         .then((resp) => {
             console.log(resp);
-            window.alert("Entry Added")
-            window.location.reload();
-        })
+            console.log("Start timeout")
+            setTimeout(()=>{window.location.reload();},3000)
+             
+         })
+                 
+       
         .catch((err) => {
              console.log(err)
         });
@@ -132,8 +134,7 @@ const Delete = (spending_tracker) => {
         .then((resp) => {
             
             console.log(resp);
-            window.alert("Entry Deleted")
-            window.location.reload();
+            setTimeout(()=>{window.location.reload();},3000)
         })
         .catch((err) => console.log.err);
 
@@ -168,8 +169,12 @@ const update = (spending_tracker) => {
         .put(`${url}/update/` + spending_tracker, editObj)
         .then((resp) => {
             console.log(resp)
-            window.alert("Entry Changed")
-            window.location.reload();
+                       
+        })
+        .then((resp) => {
+            console.log(resp)
+            setTimeout(()=>{window.location.reload();},3000)
+            
         })
         .catch((err) => console.log.err);
 
@@ -202,6 +207,7 @@ const getData = (spending_tracker) => {
     else if (spending_tracker.type == "Other") {
         EditDropDown.selectedIndex = 7;
     }
+
 
 }
 
