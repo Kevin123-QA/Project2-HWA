@@ -3,68 +3,74 @@ package com.qa.hwa.selenium.page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-
 public class Home {
-	
-	
-	@FindBy(id="amount")
+
+	@FindBy(id = "amount")
 	private WebElement InputAmount;
-	
-	@FindBy(id="typeSelector")
+
+	@FindBy(id = "typeSelector")
 	private WebElement InputType;
-	
-	@FindBy(id="additional")
+
+	@FindBy(id = "additional")
 	private WebElement InputInfo;
-	
-	@FindBy(id="submit")
+
+	@FindBy(id = "submit")
 	private WebElement ButtonSubmit;
-	
-	@FindBy(id="clear")
+
+	@FindBy(id = "clear")
 	private WebElement ButtonClear;
-	
-	@FindBy(id= "editBTN")
+
+	@FindBy(id = "editBTN")
 	private WebElement edit;
-	
-	@FindBy(id= "removeBTN")
+
+	@FindBy(id = "removeBTN")
 	private WebElement delete;
-	
-	@FindBy(id="EditAmount")
+
+	@FindBy(id = "EditAmount")
 	private WebElement ModalAmount;
-	
-	@FindBy(id="EditTypeSelector")
+
+	@FindBy(id = "EditTypeSelector")
 	private WebElement ModalType;
-	
-	@FindBy(id="EditAdditional")
+
+	@FindBy(id = "EditAdditional")
 	private WebElement ModalInfo;
-	
-	@FindBy(id="EditSave")
+
+	@FindBy(id = "EditSave")
 	private WebElement ButtonSave;
-	
-	@FindBy(xpath="/html/body/div[3]")
+
+	@FindBy(id = "EditModal")
+	private WebElement ModalWindow;
+
+	@FindBy(id = "EditClear")
+	private WebElement clear;
+
+
+	@FindBy(xpath = "/html/body/div[3]")
 	private WebElement Message;
-	
-	
-	
-	
+
 	public WebElement getButtonSave() {
 		return ButtonSave;
 	}
 
-	public void addEntry(double amount,String type,String info) {
+	public void addEntry(double amount, String type, String info) {
 		String amountToStr = String.valueOf(amount);
-		
+
 		InputAmount.sendKeys(amountToStr);
 		InputInfo.sendKeys(info);
 		InputType.sendKeys(type);
-	
+
 	}
-	
-	public void updateEntry(double amount,String type,String info) {
+
+	public void updateEntry(double amount, String type, String info) {
 		String amountToStr = String.valueOf(amount);
-		
+
 		ModalAmount.sendKeys(amountToStr);
 		ModalInfo.sendKeys(info);
 		ModalType.sendKeys(type);
+	}
+
+	public WebElement getClear() {
+		return clear;
 	}
 
 	public WebElement getInputAmount() {
@@ -86,10 +92,11 @@ public class Home {
 	public WebElement getButtonClear() {
 		return ButtonClear;
 	}
+
 	public WebElement getEdit() {
 		return edit;
 	}
-	
+
 	public WebElement getDelete() {
 		return delete;
 	}
@@ -109,8 +116,8 @@ public class Home {
 	public WebElement getMessage() {
 		return Message;
 	}
-	
-	
-	
-	
+
+	public WebElement getModalWindow() {
+		return ModalWindow;
+	}
 }

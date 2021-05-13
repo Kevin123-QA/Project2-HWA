@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.qa.hwa.domain.spendingTracker;
+import com.qa.hwa.domain.SpendingTracker;
 import com.qa.hwa.repo.SpendRepo;
 
 @Service
@@ -17,11 +17,11 @@ public class SpendService {
 		this.repo = repo;
 	}
 	
-	public spendingTracker create(spendingTracker s) {
+	public SpendingTracker create(SpendingTracker s) {
 		return this.repo.save(s);
 	}
 	
-	public List<spendingTracker> getAll(){
+	public List<SpendingTracker> getAll(){
 		return this.repo.findAll();		
 	}
 	
@@ -31,8 +31,8 @@ public class SpendService {
 		return !this.repo.existsById(id);	
 		}
 	
-	public spendingTracker update(Long id, spendingTracker newspendingTracker) {
-		spendingTracker expend = this.repo.findById(id).orElseThrow();
+	public SpendingTracker update(Long id, SpendingTracker newspendingTracker) {
+		SpendingTracker expend = this.repo.findById(id).orElseThrow();
 		expend.setAmount(newspendingTracker.getAmount());
 		expend.setInfo(newspendingTracker.getInfo());
 		expend.setType(newspendingTracker.getType());
@@ -41,9 +41,12 @@ public class SpendService {
 		return this.repo.saveAndFlush(expend);
 		
 	}
-	public spendingTracker getByID(long id) {
-		Optional<spendingTracker> optionalID = this.repo.findById(id);
-		return optionalID.get();
+	public SpendingTracker getByID(long id) {
+		Optional<SpendingTracker> optionalID = this.repo.findById(id);
+		if(optionalID.isPresent()) {
+			return optionalID.get();
+		}
+		return null;
 		
 	}
 }

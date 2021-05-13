@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.hwa.domain.spendingTracker;
+import com.qa.hwa.domain.SpendingTracker;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
@@ -41,12 +41,12 @@ public class SpendControllerIntegrationTest {
 	@Test
 	void testCreate() throws Exception {
 
-		spendingTracker s = new spendingTracker(12.99, "Eating Out", "KFC");
+		SpendingTracker s = new SpendingTracker(12.99, "Eating Out", "KFC");
 		String sAsJSON = this.mapper.writeValueAsString(s);
 
 		RequestBuilder mockRequest = post("/create").contentType(MediaType.APPLICATION_JSON).content(sAsJSON);
 
-		spendingTracker Saved = new spendingTracker(2L, 12.99, "Eating Out", "KFC");
+		SpendingTracker Saved = new SpendingTracker(2L, 12.99, "Eating Out", "KFC");
 		String SavedAsJSON = this.mapper.writeValueAsString(Saved);
 
 		ResultMatcher matchStatus = status().isCreated();
@@ -58,8 +58,8 @@ public class SpendControllerIntegrationTest {
 	@Test
 	void testgetAll() throws Exception {
 
-		List<spendingTracker> expected = new ArrayList<>();
-		expected.add(new spendingTracker(1L, 12.99, "Eating Out", "KFC"));
+		List<SpendingTracker> expected = new ArrayList<>();
+		expected.add(new SpendingTracker(1L, 12.99, "Eating Out", "KFC"));
 		String expAsJSON = this.mapper.writeValueAsString(expected);
 
 		RequestBuilder mockRequest = get("/getAll").contentType(MediaType.APPLICATION_JSON).content(expAsJSON);
@@ -74,9 +74,9 @@ public class SpendControllerIntegrationTest {
 	void testUpdate() throws Exception {
 		Long id = 1L;
 
-		spendingTracker amend = new spendingTracker(12.99, "Eating Out", "KFC");
+		SpendingTracker amend = new SpendingTracker(12.99, "Eating Out", "KFC");
 
-		spendingTracker update = new spendingTracker(id, amend.getAmount(), amend.getType(), amend.getInfo());
+		SpendingTracker update = new SpendingTracker(id, amend.getAmount(), amend.getType(), amend.getInfo());
 
 		String amendAsJSON = this.mapper.writeValueAsString(amend);
 

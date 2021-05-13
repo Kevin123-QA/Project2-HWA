@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.hwa.domain.spendingTracker;
+import com.qa.hwa.domain.SpendingTracker;
 import com.qa.hwa.service.SpendService;
 
 @RestController
@@ -27,14 +27,14 @@ public class SpendController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<spendingTracker> create(@RequestBody spendingTracker spent){
-		return new ResponseEntity<spendingTracker>(this.service.create(spent),HttpStatus.CREATED);
+	public ResponseEntity<SpendingTracker> create(@RequestBody SpendingTracker spent){
+		return new ResponseEntity<>(this.service.create(spent),HttpStatus.CREATED);
 		
 	}
 	
 	
 	@GetMapping("/getAll")
-	public ResponseEntity<List<spendingTracker>> getspendingTracker(){
+	public ResponseEntity<List<SpendingTracker>> getspendingTracker(){
 		return ResponseEntity.ok(this.service.getAll());
 	}
 	@DeleteMapping("/delete/{id}")
@@ -44,8 +44,8 @@ public class SpendController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<spendingTracker> update(@RequestBody spendingTracker s,@PathVariable Long id){
-		return new ResponseEntity<spendingTracker>(this.service.update(id, s),HttpStatus.ACCEPTED);
+	public ResponseEntity<SpendingTracker> update(@RequestBody SpendingTracker s,@PathVariable Long id){
+		return new ResponseEntity<>(this.service.update(id, s),HttpStatus.ACCEPTED);
 		
 		
 	}

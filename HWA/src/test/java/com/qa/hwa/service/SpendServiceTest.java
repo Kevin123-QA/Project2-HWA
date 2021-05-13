@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.qa.hwa.domain.spendingTracker;
+import com.qa.hwa.domain.SpendingTracker;
 import com.qa.hwa.repo.SpendRepo;
 
 @SpringBootTest
@@ -24,8 +24,8 @@ public class SpendServiceTest {
 
 	@Test
 	void testCreate() {
-		spendingTracker s = new spendingTracker(12.99, "Eating Out", "KFC");
-		spendingTracker SavedExpenditure = new spendingTracker(1L, 12.99, "Eating Out", "KFC");
+		SpendingTracker s = new SpendingTracker(12.99, "Eating Out", "KFC");
+		SpendingTracker SavedExpenditure = new SpendingTracker(1L, 12.99, "Eating Out", "KFC");
 
 		Mockito.when(this.repo.save(s)).thenReturn(SavedExpenditure);
 
@@ -37,9 +37,9 @@ public class SpendServiceTest {
 
 	@Test
 	void testgetAll() {
-		List<spendingTracker> expected = new ArrayList<>();
+		List<SpendingTracker> expected = new ArrayList<>();
 
-		expected.add(new spendingTracker(1L, 12.99, "Eating Out", "KFC"));
+		expected.add(new SpendingTracker(1L, 12.99, "Eating Out", "KFC"));
 
 		Mockito.when(this.repo.findAll()).thenReturn(expected);
 
@@ -53,8 +53,8 @@ public class SpendServiceTest {
 	void testgetByID() {
 		Long id = 1L;
 
-		Optional<spendingTracker> optionalID = Optional.ofNullable(new spendingTracker(1L, 12.99, "Eating Out", "KFC"));
-		spendingTracker exp = new spendingTracker(1L, 12.99, "Eating Out", "KFC");
+		Optional<SpendingTracker> optionalID = Optional.ofNullable(new SpendingTracker(1L, 12.99, "Eating Out", "KFC"));
+		SpendingTracker exp = new SpendingTracker(1L, 12.99, "Eating Out", "KFC");
 		Mockito.when(this.repo.findById(id)).thenReturn(optionalID);
 		assertThat(this.service.getByID(id)).isEqualTo(exp);
 		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
@@ -73,10 +73,10 @@ public class SpendServiceTest {
 	@Test
 	void testUpdate() {
 		Long id =1L;
-		spendingTracker amend = new spendingTracker(12.99, "Eating Out", "KFC");
-		Optional<spendingTracker> current = Optional.ofNullable(new spendingTracker(id,19.99, "Shopping", "Jeans"));
+		SpendingTracker amend = new SpendingTracker(12.99, "Eating Out", "KFC");
+		Optional<SpendingTracker> current = Optional.ofNullable(new SpendingTracker(id,19.99, "Shopping", "Jeans"));
 		
-		spendingTracker update = new spendingTracker(id,amend.getAmount(),amend.getType(),amend.getInfo());
+		SpendingTracker update = new SpendingTracker(id,amend.getAmount(),amend.getType(),amend.getInfo());
 		
 		Mockito.when(this.repo.findById(id)).thenReturn(current);
 		Mockito.when(this.repo.saveAndFlush(update)).thenReturn(update);

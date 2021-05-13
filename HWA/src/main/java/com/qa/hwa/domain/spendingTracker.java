@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class spendingTracker {
+public class SpendingTracker {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,14 +16,14 @@ public class spendingTracker {
 	private String type;
 	private String info;
 
-	public spendingTracker(double amount, String type, String info) {
+	public SpendingTracker(double amount, String type, String info) {
 		super();
 		this.amount = amount;
 		this.info = info;
 		this.type = type;
 	}
 		
-	public spendingTracker(Long id,double amount, String type, String info) {
+	public SpendingTracker(Long id,double amount, String type, String info) {
 			super();
 			this.id = id;
 			this.amount = amount;
@@ -32,7 +32,7 @@ public class spendingTracker {
 
 	}
 
-	public spendingTracker() {
+	public SpendingTracker() {
 
 	}
 
@@ -89,7 +89,7 @@ public class spendingTracker {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		spendingTracker other = (spendingTracker) obj;
+		SpendingTracker other = (SpendingTracker) obj;
 		if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
 			return false;
 		if (id == null) {
@@ -109,6 +109,7 @@ public class spendingTracker {
 			return false;
 		return true;
 	}
+
 
 	
 	

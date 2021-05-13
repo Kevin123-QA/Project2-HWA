@@ -147,6 +147,13 @@ const reset = () => {
     dropDown.selectedIndex = "";
 }
 
+const resetModal = () => {
+    EditInfo.value = "";
+    EditAmount.value = "";
+    let dropDown = document.getElementById("EditTypeSelector");
+    dropDown.selectedIndex = "";
+}
+
 
 const update = (spending_tracker) => {
     const EDITTYPE = EditType.value
