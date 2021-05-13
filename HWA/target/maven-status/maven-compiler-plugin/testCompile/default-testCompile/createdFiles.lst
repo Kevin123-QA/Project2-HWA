@@ -1,0 +1,5 @@
+com\qa\hwa\selenium\test\HomeTest.class
+com\qa\hwa\HwaApplicationTests.class
+com\qa\hwa\selenium\page\Home.class
+com\qa\hwa\service\SpendServiceTest.class
+com\qa\hwa\controller\SpendControllerIntegrationTest.class

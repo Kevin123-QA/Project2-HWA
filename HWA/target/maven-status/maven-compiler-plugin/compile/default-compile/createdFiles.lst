@@ -1,0 +1,5 @@
+com\qa\hwa\controller\SpendController.class
+com\qa\hwa\service\SpendService.class
+com\qa\hwa\domain\SpendingTracker.class
+com\qa\hwa\repo\SpendRepo.class
+com\qa\hwa\HwaApplication.class
