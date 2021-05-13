@@ -69,10 +69,6 @@ public class Home {
 		ModalType.sendKeys(type);
 	}
 
-	public WebElement getClear() {
-		return clear;
-	}
-
 	public WebElement getInputAmount() {
 		return InputAmount;
 	}
@@ -101,23 +97,18 @@ public class Home {
 		return delete;
 	}
 
-	public WebElement getModalAmount() {
-		return ModalAmount;
-	}
 
-	public WebElement getModalType() {
-		return ModalType;
-	}
-
-	public WebElement getModalInfo() {
-		return ModalInfo;
-	}
-
-	public WebElement getMessage() {
-		return Message;
-	}
 
 	public WebElement getModalWindow() {
 		return ModalWindow;
 	}
+
+	public WebElement getClear() {
+		return clear;
+	}
+
+
+	
 }
+
+	
