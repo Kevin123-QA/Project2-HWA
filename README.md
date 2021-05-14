@@ -62,7 +62,7 @@ All unit testing inside this project fall under this file path.
 * Now the unit test configurations are complete you can select run at the bottom of the window.  
 * On the left in the same window as the project explorer a new tab named JUnit will list all unit tests and whether they were successful or not.
 
-###Integration Tests
+### Integration Tests
 
 Integration tests check whether the communication between each objects functions as intended.
 
@@ -77,7 +77,7 @@ All integration testing inside this project fall under this file path.
 * Now the unit test configurations are complete you can select run at the bottom of the window.  
 * On the left in the same window as the project explorer a new tab named JUnit will list all unit tests and whether they were successful or not.
 
-###Selenium Tests
+### Selenium Tests
 
 Unlike with the previous two testing methods that dealt with the back-end. Selenium tests look at the front end.
 
