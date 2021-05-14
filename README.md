@@ -1,5 +1,5 @@
 # Hobby Web Application(HWA)
-## Coverage 92.5%.
+### Coverage 92.5%.
 This project was to have CRUD functionality on a web application in this case a spending tracker. 
 Inside you can add into fields of amount, spending type and additional. 
 infomation for whatever purchase that you made to keep a so called online diary. 
