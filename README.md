@@ -95,17 +95,17 @@ All slenium testing inside this project fall under this file path.
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
-* [mysql](https://mvnrepository.com/artifact/mysql/mysql-connector-java) 
-* [junit](https://mvnrepository.com/artifact/junit/junit)
-* [Springfox](https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter)
-* [Selenium](https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java)
+* [mysql](https://mvnrepository.com/artifact/mysql/mysql-connector-java) - Database 
+* [junit](https://mvnrepository.com/artifact/junit/junit) - Back-End Testing
+* [Springfox](https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter) - Spring Boot
+* [Selenium](https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java) - Front-End Testing 
 
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
-* **Kevin Tse** -*Completeion of Items and Order section
+* **Kevin Tse** 
 
 ## License
 
